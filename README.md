@@ -191,3 +191,14 @@ Lo mismo sucede con un cliente o un producto. Estas dos últimas clases las usam
 
 
 
+## Instalación
+
+Además de bajarse el sitio de github hay que instalar lo siguiente para que funcione
+
+pip install flask 
+pip install flask-bootstrap
+pip install flask-moment
+pip install flask-script
+pip install flask-wtf
+
+
