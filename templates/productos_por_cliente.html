@@ -1,0 +1,56 @@
+{% extends "base_consultas.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Ingrese{% endblock %}
+
+{% block page_content %}
+<div class="page-header">    
+	Listar todos los productos que fueron comprados por un determinado cliente
+	</p>	
+    {{ wtf.quick_form(formulario) }}	
+	<script language="javascript">
+		document.getElementById('cliente').setAttribute('autocomplete','off');
+		document.getElementById('cliente').setAttribute('list','id_datalist');
+		autocomplete="off"
+	</script>
+
+	<datalist id="id_datalist">
+	{% for entry in listaclientes %}
+	<option value="{{ entry.nombre }}">
+	{% endfor %}
+	</datalist>
+</div>
+<div class="container">
+
+
+	{% if lista %}
+		<table class="table">
+		    <thead>
+		        <tr>
+		            <th>C&Oacute;DIGO</th>
+		            <th>PRODUCTO</th>
+		            <th>CLIENTE</th>
+		            <th>CANTIDAD</th>
+		            <th>PRECIO</th>
+		        <tr>
+		    </thead>
+		    <tbody>
+		        {% for venta in lista %}
+		        <tr>
+		            <td>{{ venta.codigo }}</td>
+		            <td>{{ venta.producto }}</td>
+		            <td>{{ venta.cliente }}</td>
+		            <td>{{ venta.cantidad }}</td>
+		            <td>{{ venta.precio }}</td>
+		        </tr>
+		        {% endfor %}
+		    </tbody>
+		</table>
+	{% else %}
+		{% if cliente %}
+			No se encontr&oacute; ning&uacute;n producto comprado por ese cliente
+		{% endif %}	
+	{% endif %}
+</div>
+
+{% endblock %}

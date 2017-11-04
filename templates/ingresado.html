@@ -1,0 +1,36 @@
+{% extends "base_consultas.html" %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block page_content %}
+<div class="page-header">    
+    <h1>Bienvenido {{ usuario }}!!</h1>
+	</p>
+    <h1>&Uacute;ltimas Ventas</h1>
+</div>
+
+<div class="container">
+	<table class="table">
+	    <thead>
+	        <tr>
+	            <th>C&Oacute;DIGO</th>
+	            <th>PRODUCTO</th>
+	            <th>CLIENTE</th>
+	            <th>CANTIDAD</th>
+	            <th>PRECIO</th>
+	        <tr>
+	    </thead>
+	    <tbody>
+	        {% for venta in lista %}
+	        <tr>
+	            <td>{{ venta.codigo }}</td>
+	            <td>{{ venta.producto }}</td>
+	            <td>{{ venta.cliente }}</td>
+	            <td>{{ venta.cantidad }}</td>
+	            <td>{{ venta.precio }}</td>
+	        </tr>
+	        {% endfor %}
+	    </tbody>
+	</table>
+</div>
+{% endblock %}

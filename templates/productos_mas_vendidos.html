@@ -1,0 +1,33 @@
+{% extends "base_consultas.html" %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block page_content %}
+
+<div class="page-header">    
+    <h1>Productos m&aacute;s vendidos</h1>
+</div>
+
+<div class="container">
+	<table class="table">
+	    <thead>
+	        <tr>
+	            <th>C&Oacute;DIGO</th>
+	            <th>PRODUCTO</th>
+	            <th>CANTIDAD</th>
+	        <tr>
+	    </thead>
+	    <tbody>
+	        {% for producto in lista %}
+	        <tr>
+	            <td>{{ producto.codigo }}</td>
+	            <td>{{ producto.producto }}</td>
+	            <td>{{ producto.cantidad }}</td>
+	        </tr>
+	        {% endfor %}
+	    </tbody>
+	</table>
+</div>
+
+
+{% endblock %}
