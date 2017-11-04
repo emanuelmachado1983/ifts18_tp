@@ -1,4 +1,4 @@
-#Aplicación para Farmacias (Examen 1 de Estructura de Datos)
+# Aplicación para Farmacias (Examen 1 de Estructura de Datos)
 
 ###Integrantes: Mariana Duran, Emanuel Machado
 
