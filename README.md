@@ -1,8 +1,8 @@
 # Aplicación para Farmacias (Examen 1 de Estructura de Datos)
 
-###Integrantes: Mariana Duran, Emanuel Machado
+### Integrantes: Mariana Duran, Emanuel Machado
 
-##Flujo del programa
+## Flujo del programa
 
 Se accederá al programa por medio un login. En caso de no estar registrado, el usuario tendrá una pantalla de registración.
 
@@ -19,7 +19,7 @@ Una vez que el usuario ingresó en el sistema, podrá realizar las siguiente con
 **Mejores Clientes**: Se mostrará los cincos clientes más compradores. Si hay varios en el quinto puesto también los mostrará.
 
 
-##Modo de uso
+## Modo de uso
 
 1) El usuario accede a la página y le aparece una pantalla de presentación.
 
@@ -55,7 +55,7 @@ Una vez que el usuario ingresó en el sistema, podrá realizar las siguiente con
 
 ![alt text](./imagenesDocumentacion/MejoresClientes.png "Mejores Clientes")
 
-##Estructura del programa
+## Estructura del programa
 
 La idea de nosotros es organizar el código de forma que el controlador sólo se ocupe de llamar a las páginas web. Que haya un archivo .py que se encargue de realizar la lógica del programa, y un archivo .py también que se encargue de traer los datos de los csv. 
 De esta forma si el día de mañana queremos que la información del sistema en lugar de tomarse desde un .csv se tome desde una base de datos como mysql, con modificar el archivo datos.py para que se conecte al mysql no haría falta modificar el resto de la aplicación.
@@ -66,7 +66,7 @@ El esquema gráficamente sería algo así:
 
 
 
-###carpeta principal
+### carpeta principal
 En la carpeta principal del sistema estará ubicado el controlador que es el encargado de llamar a los html.
 
 **app.py**: En este archivo se encuentran las funciones que se encargan de llamar a los distintos templates. Además llama a las funciones que se encuentran en el archivo logica.py que son las encargadas de traer la información.
@@ -78,7 +78,7 @@ En la carpeta principal del sistema estará ubicado el controlador que es el enc
 **ventas.csv**: Archivo donde se encuentran las ventas de productos
 
 
-###carpeta templates
+### carpeta templates
 
 En esta carpeta se encuentran los .html, que son los que se muestran en el browser del usuario.
 
@@ -114,7 +114,7 @@ En esta carpeta se encuentran los .html, que son los que se muestran en el brows
 
 **ultimasVentas.html**: Pantalla de últimas ventas
 
-###carpeta logica
+### carpeta logica
 
 En esta carpeta se encuentra que se encarga de procesar la información que viene de datos.py
 
@@ -162,7 +162,7 @@ Las funciones que se usan son las siguiente:
 
 
 
-##Clases que se utilizaron
+## Clases que se utilizaron
 
 En forms.py se utilizaron las clases:
 
