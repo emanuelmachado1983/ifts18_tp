@@ -62,7 +62,7 @@ De esta forma si el día de mañana queremos que la información del sistema en 
 
 El esquema gráficamente sería algo así:
 
-![alt text](./imagenesDocumentacion/Estructura.png "Estructura")
+![alt text](./imagenesDocumentacion/estructura.png "Estructura")
 
 
 
