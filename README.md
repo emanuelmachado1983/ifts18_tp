@@ -59,7 +59,7 @@ Una vez que el usuario ingresó en el sistema, podrá realizar las siguiente con
 
 ## Estructura del programa
 
-La idea de nosotros es organizar el código de forma que el controlador sólo se ocupe de llamar a las páginas web. Que haya un archivo .py que se encargue de realizar la lógica del programa, y un archivo .py también que se encargue de traer los datos de los csv. 
+La idea de nosotros es organizar el código de forma que el controlador se ocupe de llamar a las páginas web, y de llamar a las funciones que se encargan de la lógica del programa. Esta lógica tiene que realizarse en un archivo .py (logica.py). Ademas de esto se tendrá otro archivo .py que se encargue de traer los datos de los csv (datos.py). 
 De esta forma si el día de mañana queremos que la información del sistema en lugar de tomarse desde un .csv se tome desde una base de datos como mysql, con modificar el archivo datos.py para que se conecte al mysql no haría falta modificar el resto de la aplicación.
 
 El esquema gráficamente sería algo así:
