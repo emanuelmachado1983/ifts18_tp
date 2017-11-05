@@ -208,3 +208,29 @@ pip install flask-script
 pip install flask-wtf
 
 
+Nosotros accedemos a los archivos ventas.csv y usuarios.csv de forma relativa. Es decir que en la variable ponemos el nombre del archivo, y a nosotros nos funciona correctamente en nuestras pcs accediendo desde localhost.
+
+Ahora cuando lo subimos a pythonanywhere pudimos ver que el servidor no reconocía la ruta relativa, esto nos llevó a modificar la forma en que le pasabamos el nombre del archivo a las variables.
+
+En datos.py dentro de la carpeta datos, se podrá ver que hay tres variables:
+
+path = ""
+archivoUsuarios = path + "usuarios.csv"
+archivoVentas = path + "ventas.csv"
+
+En caso de tener el mismo problema que en pythonanywhere, se tendrá que poner en la variable path, la ruta donde se encuentran los archivos dentro de la página.
+
+Los archivos usuarios.csv y ventas.csv tienen que existir sí o sí, sino el sistema dará error.
+
+
+## Demo
+
+Se encuentra una demo subida en http://emanuelmachado.pythonanywhere.com
+
+
+
+
+
+
+
+
