@@ -11,6 +11,10 @@ posPrecio = 0
 
 #En este archivo están las funciones que consultan el csv
 
+path = ""
+archivoUsuarios = path + "usuarios.csv"
+archivoVentas = path + "ventas.csv"
+
 def leerRegistro(archivo_csv, valor):
 #Lee un registro y devuelve los siguientes códigos de error:
 #4: Hay registros con menos valores de los que se espera
@@ -69,7 +73,7 @@ def traerVentas():
 #2: No se pudo abrir el archivo
 #0: Funcionó correctamente
     try:
-        with open('ventas.csv') as archivo:
+        with open(archivoVentas) as archivo:
             registro, archivo_csv, huboError = definirArchivo(archivo)
             if huboError > 0:
                 return [], huboError
@@ -97,7 +101,7 @@ def validarExisteUsuarioDatos(usuario):
 #2: No se pudo abrir el archivo
 #0: Funcionó correctamente
     try:
-        with open('usuarios.csv') as archivo:
+        with open(archivoUsuarios) as archivo:
             archivo_csv = csv.reader(archivo)
             registro = next(archivo_csv)
             while registro:
@@ -113,7 +117,7 @@ def validarExisteUsuarioDatos(usuario):
 def grabarUsuarioDatos(registro):
 #se graba el Usuario en usuarios.csv
     try:
-        with open('usuarios.csv', 'a+') as archivo:
+        with open(archivoUsuarios, 'a+') as archivo:
             archivo_csv = csv.writer(archivo)
             archivo_csv.writerow(registro) 
         return 1, 0       
@@ -125,7 +129,7 @@ def grabarUsuarioDatos(registro):
 def buscarUsuarioDatos(nombreUsuario, password):
 #busca usuario y contraseña en el archivo usuarios.csv
     try:
-        with open('usuarios.csv') as archivo:
+        with open(archivoUsuarios) as archivo:
             archivo_csv = csv.reader(archivo)
             registro = next(archivo_csv)
             while registro:
