@@ -21,37 +21,39 @@ Una vez que el usuario ingresó en el sistema, podrá realizar las siguiente con
 
 ## Modo de uso
 
-1) El usuario accede a la página y le aparece una pantalla de presentación.
+1) Al acceder a la página, al usuario le aparece una pantalla de presentación.
 
+![alt text](./imagenesDocumentacion/Index.png "Index")
 
-![alt text](./imagenesDocumentacion/Index_.png "Index")
-
-
-2) Al hacer clic en el link "Registrarse el usuario verá la pantalla de registración
+2) Al hacer clic en el link "Registrarse" el usuario verá la pantalla de registración
 
 ![alt text](./imagenesDocumentacion/registrar.png "Registracion")
 
-3) Una vez que el usuario ingresa le aparece una pantalla de bienvenida con las últimas ventas
+3) Al hacer clic en el link "Ingresar" el usuario podrá loguears
+
+![alt text](./imagenesDocumentacion/Index_.png "Index")
+
+4) Una vez que el usuario ingresa le aparece una pantalla de bienvenida con las últimas ventas
 
 ![alt text](./imagenesDocumentacion/bienvenido.png "Bienvenido")
 
-4) Si en la barra de menús el usuario hace clic en el link "Últimas Ventas" le mostrará también las últimas ventas
+5) Si en la barra de menús el usuario hace clic en el link "Últimas Ventas" le mostrará también las últimas ventas
 
 ![alt text](./imagenesDocumentacion/UltimasVentas.png "Últimas Ventas")
 
-5) Al hacer clic en el link "Productos por Cliente" le aparecerá una pantalla donde podrá consultar las ventas que se le hicieron a un cliente.
+6) Al hacer clic en el link "Productos por Cliente" le aparecerá una pantalla donde podrá consultar las ventas que se le hicieron a un cliente.
 
 ![alt text](./imagenesDocumentacion/ProductosPorCliente.png "Productos por Cliente")
 
-6) Al hacer clic en el link "Clientes por Producto" le aparecerá una pantalla donde se podrá consultar las ventas de un producto especificado por el usuario
+7) Al hacer clic en el link "Clientes por Producto" le aparecerá una pantalla donde se podrá consultar las ventas de un producto especificado por el usuario
 
 ![alt text](./imagenesDocumentacion/ClientesPorProducto.png "Clientes por Producto")
 
-7) Al hacer clic en el link "Productos más Vendidos" se mostrará una pantalla con los cinco productos más vendidos. Hay que tener en cuenta que si hay varios productos en el quinto también los muestra.
+8) Al hacer clic en el link "Productos más Vendidos" se mostrará una pantalla con los cinco productos más vendidos. Hay que tener en cuenta que si hay varios productos en el quinto también los muestra.
 
 ![alt text](./imagenesDocumentacion/ProductosMasVendidos.png "Productos más Vendidos")
 
-8) Al hacer clic en el link "Mejores Clientes" se mostrará una pantalla con los cinco clientes más compradores. Hay que tener en cuenta que si hay varios clientes en el quinto también los muestra.
+9) Al hacer clic en el link "Mejores Clientes" se mostrará una pantalla con los cinco clientes más compradores. Hay que tener en cuenta que si hay varios clientes en el quinto también los muestra.
 
 ![alt text](./imagenesDocumentacion/MejoresClientes.png "Mejores Clientes")
 
