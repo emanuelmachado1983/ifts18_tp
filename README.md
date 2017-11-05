@@ -23,7 +23,7 @@ Una vez que el usuario ingresó en el sistema, podrá realizar las siguiente con
 
 1) Al acceder a la página, al usuario le aparece una pantalla de presentación.
 
-![alt text](./imagenesDocumentacion/Index.png "Index")
+![alt text](./imagenesDocumentacion/index.png "Index")
 
 2) Al hacer clic en el link "Registrarse" el usuario verá la pantalla de registración
 
@@ -31,7 +31,7 @@ Una vez que el usuario ingresó en el sistema, podrá realizar las siguiente con
 
 3) Al hacer clic en el link "Ingresar" el usuario podrá loguears
 
-![alt text](./imagenesDocumentacion/Index_.png "Index")
+![alt text](./imagenesDocumentacion/Index_.png "Ingreso")
 
 4) Una vez que el usuario ingresa le aparece una pantalla de bienvenida con las últimas ventas
 
