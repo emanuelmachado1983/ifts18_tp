@@ -221,7 +221,7 @@ def buscarUsuario(nombreUsuario, password):
     return valor, huboError
 
 def generarArchivoCsv(titulo, cabecera, lista):
-#funcion que genera el archivo de ventas
+#funcion que genera un archivo .csv a partir de una lista que se le pasa por parámetro
     try:
         nombreArchivo = "Resultado_" + datetime.now().strftime("%Y%m%d_%H:%M:%S") + ".csv"
         nombreArchivoConPath = pathExportados + nombreArchivo
@@ -240,6 +240,6 @@ def generarArchivoCsv(titulo, cabecera, lista):
         return "","", 8    
 
 def grabarPwdUsuario(registro):
-#funcion que llama a a la función correspondiente que graba el usuario
+#funcion que llama a a la función correspondiente que graba la contraseña del usuario
     valor,huboError = grabarPwdUsuarioDatos(registro)
     return valor, huboError
