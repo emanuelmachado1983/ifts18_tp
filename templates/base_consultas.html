@@ -30,6 +30,8 @@
                 <li><a href="/clientesPorProducto">Clientes por Producto</a></li>
                 <li><a href="/productosMasVendidos">Productos m&aacute;s vendidos</a></li>
                 <li><a href="/clientesMasCompradores">Mejores Clientes</a></li>
+                <li><a href="/generarNuevoUsuario">Alta de Usuarios</a></li>
+                <li><a href="/cambiarClave">Cambiar Clave</a></li>
 
             </ul>
         </div>
@@ -42,6 +44,12 @@
     {% for message in get_flashed_messages() %}
         {% if "Error" in message: %}
             <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endif %}
+        {% if "Mensaje:" in message: %}
+            <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{ message }}
             </div>
