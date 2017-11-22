@@ -8,3 +8,6 @@ class Producto:
         self.producto = producto
         self.cantidad = cantidad
         self.precio  = precio
+
+    def retornarLinea(self):
+        return [self.codigo, self.producto, self.cantidad]
