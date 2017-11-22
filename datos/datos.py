@@ -149,7 +149,7 @@ def buscarUsuarioDatos(nombreUsuario, password):
         return 0, 1
 
 def grabarPwdUsuarioDatos(registro):
-#se graba el Usuario en usuarios.csv
+#se modifica la contraseña del usuario
     try:
         with open (archivoUsuarios, 'r') as archivoOrigen:
             reader=csv.reader(archivoOrigen)
