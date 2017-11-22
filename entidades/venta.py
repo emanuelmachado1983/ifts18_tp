@@ -10,3 +10,6 @@ class Venta:
         self.producto = producto
         self.cantidad = cantidad
         self.precio = precio
+
+    def retornarLinea(self):
+        return [self.cliente, self.codigo, self.producto, self.cantidad, self.precio]
