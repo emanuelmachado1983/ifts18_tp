@@ -2,6 +2,9 @@ import csv
 from entidades.venta import *
 from entidades.producto import *
 from entidades.cliente import *
+from tempfile import NamedTemporaryFile
+import shutil
+import os
 
 posCodigo = 0
 posProducto = 0
@@ -14,6 +17,8 @@ posPrecio = 0
 path = ""
 archivoUsuarios = path + "usuarios.csv"
 archivoVentas = path + "ventas.csv"
+archivoUsuariosTemp = path + "usuariosTemp.csv"
+
 
 def leerRegistro(archivo_csv, valor):
 #Lee un registro y devuelve los siguientes códigos de error:
@@ -142,3 +147,22 @@ def buscarUsuarioDatos(nombreUsuario, password):
         return 0, 2
     else: 
         return 0, 1
+
+def grabarPwdUsuarioDatos(registro):
+#se graba el Usuario en usuarios.csv
+    try:
+        with open (archivoUsuarios, 'r') as archivoOrigen:
+            reader=csv.reader(archivoOrigen)
+            with open (archivoUsuariosTemp, 'w') as archivoDestino:
+                writer=csv.writer(archivoDestino)
+                for registroLeido in reader:
+                    if registroLeido[0] == registro[0]:
+                        registroLeido[1] = registro[1]
+                    writer.writerow(registroLeido)
+        os.remove(archivoUsuarios)
+        os.rename(archivoUsuariosTemp, archivoUsuarios)
+        return 1, 0       
+    except OSError:
+        return 0, 2
+    else: 
+        return 0, 9
