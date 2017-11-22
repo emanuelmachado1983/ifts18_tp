@@ -1,6 +1,9 @@
 from datos.datos import *
-
+import time
+from datetime import datetime
 #Aquí estarán las funciones que se dedican a realizar la lógica del programa
+
+pathExportados = "archivoSalida/"
 
 def traerClientes():
 #Devuelve una lista de clientes ordenada por nombre
@@ -215,4 +218,28 @@ def grabarUsuario(registro):
 def buscarUsuario(nombreUsuario, password):
 #funcion que llama a a la función correspondiente que busca un usuario
     valor,huboError = buscarUsuarioDatos(nombreUsuario, password)
+    return valor, huboError
+
+def generarArchivoCsv(titulo, cabecera, lista):
+#funcion que genera el archivo de ventas
+    try:
+        nombreArchivo = "Resultado_" + datetime.now().strftime("%Y%m%d_%H:%M:%S") + ".csv"
+        nombreArchivoConPath = pathExportados + nombreArchivo
+        with open(nombreArchivoConPath, 'w') as archivo:
+            archivo_csv = csv.writer(archivo)
+            archivo_csv.writerow(titulo)
+            archivo_csv.writerow(cabecera)
+            for venta in lista:
+                registro = venta.retornarLinea()
+                archivo_csv.writerow(registro) 
+        return nombreArchivo, nombreArchivoConPath , 0
+
+    except OSError:
+        return "","", 8
+    else: 
+        return "","", 8    
+
+def grabarPwdUsuario(registro):
+#funcion que llama a a la función correspondiente que graba el usuario
+    valor,huboError = grabarPwdUsuarioDatos(registro)
     return valor, huboError
