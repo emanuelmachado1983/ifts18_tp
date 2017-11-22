@@ -223,7 +223,7 @@ def generarNuevoUsuario():
 def cambiarClave():
 #me lleva a la pantalla de cambio de clave
     if 'username' not in session:
-        return redirect(url_for('cambiarClave'))
+        return redirect(url_for('ingresar'))
     formulario = CambiarClaveForm()
     if formulario.validate_on_submit():
         valor, huboError = buscarUsuario(session['username'], formulario.passwordOriginal.data)
