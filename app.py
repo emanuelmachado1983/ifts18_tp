@@ -200,7 +200,7 @@ def registrar():
 
 @app.route('/generarNuevoUsuario', methods=['GET', 'POST'])
 def generarNuevoUsuario():
-#me lleva a la pantalla de registración
+#me lleva a la pantalla de generación de nuevo usuario
     if 'username' not in session:
         return redirect(url_for('ingresar'))
     formulario = GenerarNuevoUsuarioForm()
@@ -221,7 +221,7 @@ def generarNuevoUsuario():
 
 @app.route('/cambiarClave', methods=['GET', 'POST'])
 def cambiarClave():
-#me lleva a la pantalla de registración
+#me lleva a la pantalla de cambio de clave
     if 'username' not in session:
         return redirect(url_for('cambiarClave'))
     formulario = CambiarClaveForm()
