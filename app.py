@@ -5,7 +5,8 @@ from flask import Flask, render_template, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_script import Manager
-from forms import LoginForm, RegistrarForm, ProductosPorClienteForm, ClientesPorProductosForm
+from forms import LoginForm, RegistrarForm, ProductosPorClienteForm, ClientesPorProductosForm, ProductosMasVendidosForm, ClientesMasCompradoresForm, GenerarNuevoUsuarioForm, CambiarClaveForm
+from flask import send_file
 
 from logica.logica import *
 
@@ -33,6 +34,10 @@ def tratarError(huboError):
         flash("Error: Hay una cantidad que no es entera")
     if huboError == 7:
         flash("Error: Hay un precio que no es decimal")
+    if huboError == 8:
+        flash("Error: Error en la generación del archivo")
+    if huboError == 9:
+        flash("Error: Error al tratar de modificar la password")
 
 @app.route('/')
 def index():
@@ -68,27 +73,41 @@ def ultimasVentas():
     tratarError(huboError)
     return render_template('ultimasVentas.html', lista = listaResultado)
 
-@app.route('/productosMasVendidos', methods =['GET'])
+@app.route('/productosMasVendidos', methods =['GET', 'POST'])
 def productosMasVendidos():
 #En caso de estar logueado muestra la pagina donde se traen los 5 productos más vendidos 
 #En caso de que haya varios productos que compartan el quinto puesto, los trae también
 #si no está logueado, va a la pantalla de login
     if 'username' not in session:
         return redirect(url_for('ingresar'))
+    formulario = ProductosMasVendidosForm()
     listaResultado, huboError = traerProductosMasVendidos()
     tratarError(huboError)
-    return render_template('productos_mas_vendidos.html', lista = listaResultado)
+    if formulario.validate_on_submit():
+        if len(listaResultado)>0:
+            nombreArchivo, nombreArchivoConPath, huboError = generarArchivoCsv(["Productos más Vendidos"], ["CÓDIGO","PRODUCTO","CANTIDAD"], listaResultado)
+            tratarError(huboError)
+        if huboError == 0:
+            return send_file(nombreArchivoConPath, mimetype='text/csv', attachment_filename=nombreArchivo, as_attachment=True)
+    return render_template('productos_mas_vendidos.html', lista = listaResultado, formulario = formulario)
 
-@app.route('/clientesMasCompradores', methods =['GET'])
+@app.route('/clientesMasCompradores', methods =['GET', 'POST'])
 def clientesMasCompradores():
 #En caso de estar logueado muestra los 5 clientes más compradores
 #En caso de que haya varios clientes que compartan el quinto puesto, los trae también
 #si no está logueado, va a la pantalla de login
     if 'username' not in session:
         return redirect(url_for('ingresar'))
+    formulario = ClientesMasCompradoresForm()
     listaResultado, huboError = traerClientesMasCompradores()
     tratarError(huboError)
-    return render_template('clientes_mas_compradores.html', lista = listaResultado)
+    if formulario.validate_on_submit():
+        if len(listaResultado)>0:
+            nombreArchivo, nombreArchivoConPath, huboError = generarArchivoCsv(["Mejores Clientes"], ["CLIENTE","VALOR"], listaResultado)
+            tratarError(huboError)
+        if huboError == 0:
+            return send_file(nombreArchivoConPath, mimetype='text/csv', attachment_filename=nombreArchivo, as_attachment=True)
+    return render_template('clientes_mas_compradores.html', lista = listaResultado, formulario = formulario)
 
 @app.route('/ingresar', methods=['GET', 'POST'])
 def ingresar():
@@ -120,6 +139,12 @@ def productosPorCliente():
     if formulario.validate_on_submit():
         listaResultado, huboError = traerProductosPorCliente(formulario.cliente.data)
         tratarError(huboError)
+        if formulario.generarArchivo.data: #significa que hay que guardarlo en un archivo
+            if len(listaResultado)>0:
+                nombreArchivo, nombreArchivoConPath, huboError = generarArchivoCsv(["Productos por Cliente", formulario.cliente.data], ["CÓDIGO","PRODUCTO","CLIENTE","CANTIDAD","PRECIO"], listaResultado)
+                tratarError(huboError)
+                if huboError == 0:
+                    return send_file(nombreArchivoConPath, mimetype='text/csv', attachment_filename=nombreArchivo, as_attachment=True)
     listaClientes, huboError = traerClientes()
     tratarError(huboError)
     return render_template('productos_por_cliente.html', lista = listaResultado, formulario=formulario, cliente = formulario.cliente.data, listaclientes = listaClientes)
@@ -135,6 +160,12 @@ def clientesPorProducto():
     if formulario.validate_on_submit():
         listaResultado, huboError = traerClientesPorProducto(formulario.producto.data)
         tratarError(huboError)
+        if formulario.generarArchivo.data: #significa que hay que guardarlo en un archivo
+            if len(listaResultado)>0:
+                nombreArchivo, nombreArchivoConPath, huboError = generarArchivoCsv(["Clientes Por Producto", formulario.producto.data], ["CÓDIGO","PRODUCTO","CLIENTE","CANTIDAD","PRECIO"], listaResultado)
+                tratarError(huboError)
+                if huboError == 0:
+                    return send_file(nombreArchivoConPath, mimetype='text/csv', attachment_filename=nombreArchivo, as_attachment=True)
     listaProductos, huboError = traerProductos()
     tratarError(huboError)
     return render_template('clientes_por_producto.html', lista = listaResultado, formulario=formulario, producto = formulario.producto.data, listaProductos = listaProductos)
@@ -167,7 +198,46 @@ def registrar():
             flash('Error: Las passwords que acaba de ingresar no son la misma')
     return render_template('registrar.html', form=formulario)
 
+@app.route('/generarNuevoUsuario', methods=['GET', 'POST'])
+def generarNuevoUsuario():
+#me lleva a la pantalla de registración
+    if 'username' not in session:
+        return redirect(url_for('ingresar'))
+    formulario = GenerarNuevoUsuarioForm()
+    if formulario.validate_on_submit():
+        valor, huboError = validarExisteUsuario(formulario.usuario.data)
+        tratarError(huboError)
+        if valor==0:
+            flash("Error: El usuario ya existe")
+            return render_template('generarNuevoUsuario.html', form=formulario)
+        registro = [formulario.usuario.data, formulario.password.data]
+        valor, huboError = grabarUsuario(registro)
+        tratarError(huboError)
+        if valor == 1:
+            flash('Mensaje: Usuario creado correctamente')
+        else:
+            flash('Error: Hubo un error en la creación del usuario')
+    return render_template('generarNuevoUsuario.html', form=formulario)
 
+@app.route('/cambiarClave', methods=['GET', 'POST'])
+def cambiarClave():
+#me lleva a la pantalla de registración
+    if 'username' not in session:
+        return redirect(url_for('cambiarClave'))
+    formulario = CambiarClaveForm()
+    if formulario.validate_on_submit():
+        if formulario.password.data == formulario.password_check.data:
+            registro = [session['username'], formulario.password.data]
+            valor, huboError = grabarPwdUsuario(registro)
+            tratarError(huboError)
+            if valor == 1:
+                flash('Mensaje: Usuario modificado correctamente')
+            else:
+                flash('Error: Hubo un error en la modificación del usuario')
+            return redirect(url_for('cambiarClave'))
+        else:
+            flash('Error: Las passwords que acaba de ingresar no son la misma')
+    return render_template('cambiarClave.html', form=formulario)
 
 @app.route('/salir', methods=['GET'])
 def logout():
