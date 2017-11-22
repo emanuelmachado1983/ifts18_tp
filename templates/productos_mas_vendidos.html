@@ -1,11 +1,14 @@
 {% extends "base_consultas.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Productos más Vendidos{% endblock %}
+{% block title %}Productos más vendidos{% endblock %}
 
 {% block page_content %}
 
 <div class="page-header">    
     <h1>Productos m&aacute;s vendidos</h1>
+	</p>	
+    {{ wtf.quick_form(formulario) }}
 </div>
 
 <div class="container">
