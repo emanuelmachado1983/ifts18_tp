@@ -35,6 +35,7 @@ class GenerarNuevoUsuarioForm(FlaskForm):
     enviar = SubmitField('Aceptar')
 
 class CambiarClaveForm(FlaskForm):
-    password = PasswordField('Contraseña', validators=[Required()])
+    passwordOriginal = PasswordField('Contraseña Original', validators=[Required()])
+    password = PasswordField('Contraseña Nueva', validators=[Required()])
     password_check = PasswordField('Verificar Contraseña', validators=[Required()])
     enviar = SubmitField('Aceptar')
