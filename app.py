@@ -226,6 +226,11 @@ def cambiarClave():
         return redirect(url_for('cambiarClave'))
     formulario = CambiarClaveForm()
     if formulario.validate_on_submit():
+        valor, huboError = buscarUsuario(session['username'], formulario.passwordOriginal.data)
+        tratarError(huboError)
+        if valor != 1:
+            flash('Error: Contraseña incorrecta')
+            return redirect(url_for('cambiarClave'))
         if formulario.password.data == formulario.password_check.data:
             registro = [session['username'], formulario.password.data]
             valor, huboError = grabarPwdUsuario(registro)
