@@ -1,4 +1,4 @@
-# Aplicación para Farmacias (Examen 1 de Estructura de Datos)
+# Aplicación para Farmacias (Examen Final de Estructura de Datos)
 
 ### Integrantes: Mariana Duran, Emanuel Machado
 
@@ -45,17 +45,34 @@ Una vez que el usuario ingresó en el sistema, podrá realizar las siguiente con
 
 ![alt text](./imagenesDocumentacion/ProductosPorCliente.png "Productos por Cliente")
 
+Si el usuario hace clic en el botón "Generar Archivo", el sistema le permitirá bajar el resultado de la consulta en un .csv.
+
 7) Al hacer clic en el link "Clientes por Producto" le aparecerá una pantalla donde se podrá consultar las ventas de un producto especificado por el usuario
 
 ![alt text](./imagenesDocumentacion/ClientesPorProducto.png "Clientes por Producto")
+
+Si el usuario hace clic en el botón "Generar Archivo", el sistema le permitirá bajar el resultado de la consulta en un .csv.
 
 8) Al hacer clic en el link "Productos más Vendidos" se mostrará una pantalla con los cinco productos más vendidos. Hay que tener en cuenta que si hay varios productos en el quinto también los muestra.
 
 ![alt text](./imagenesDocumentacion/ProductosMasVendidos.png "Productos más Vendidos")
 
+Si el usuario hace clic en el botón "Generar Archivo", el sistema le permitirá bajar el resultado de la consulta en un .csv.
+
 9) Al hacer clic en el link "Mejores Clientes" se mostrará una pantalla con los cinco clientes más compradores. Hay que tener en cuenta que si hay varios clientes en el quinto también los muestra.
 
 ![alt text](./imagenesDocumentacion/MejoresClientes.png "Mejores Clientes")
+
+Si el usuario hace clic en el botón "Generar Archivo", el sistema le permitirá bajar el resultado de la consulta en un .csv.
+
+10) Al hacer clic en el link "Alta de Usuario" se mostrará una pantalla donde se podrá dar de alta un usuario en el sistema.
+
+![alt text](./imagenesDocumentacion/AltaUsuario.png "Alta de Usuario")
+
+11) Al hacer clic en el link "Cambiar Clave" se mostrará una pantalla donde se podrá modificar la contraseña del usuario logueado.
+
+![alt text](./imagenesDocumentacion/CambiarClave.png "Cambiar Clave")
+
 
 ## Estructura del programa
 
@@ -112,9 +129,13 @@ En esta carpeta se encuentran los .html, que son los que se muestran en el brows
 
 **productos_por_cliente.html**: Pantalla donde se puede filtrar las ventas por cliente.
 
-**registrar.html**: Pantalla de registración
+**registrar.html**: Pantalla de registración.
 
-**ultimasVentas.html**: Pantalla de últimas ventas
+**ultimasVentas.html**: Pantalla de últimas ventas.
+
+**generarNuevoUsuario.html**: Pantalla donde se podrá crear un nuevo usuario.
+
+**cambiarClave.html**: Pantalla donde se podrá modificar la clave del usuario logueado.
 
 ### carpeta logica
 
@@ -144,6 +165,9 @@ Las funciones que se usan son las siguiente:
 
 *buscarUsuario*: Llama a la función de datos.py que busca un determinado usuario.
 
+*generarArchivoCsv*: Función que permite generar un archivo .csv a partir de una lista dada.
+
+*grabarPwdUsuario*: Función que permite modificar la contraseña de un usuario. En realidad llama a grabarPwdUsuario de datos.py
 
 
 **datos.py**: Se encarga de leer y validar los archivos .csv
@@ -162,7 +186,7 @@ Las funciones que se usan son las siguiente:
 
 *buscarUsuarioDatos*: busca usuario y contraseña en usuarios.csv-
 
-
+*grabarPwdUsuario*: Función que permite modificar la contraseña de un usuario.
 
 ## Clases que se utilizaron
 
@@ -172,12 +196,19 @@ En forms.py se utilizaron las clases:
 
 *RegistrarForm*: Se definen los textbox y el botón de aceptar de la pantalla de registración.
 
-*ProductosPorClienteForm*: Se define el textbox y el botón de aceptar para la pantalla de consulta de productos por cliente.
+*ProductosPorClienteForm*: Se define el textbox, el botón de aceptar para la pantalla de consulta de productos por cliente, y el botón para la exportación del resultado en un .csv.
 
-*ClientesPorProductoForm*: Se define el textbox y el botón de aceptar para la pantalla de consulta de clientes por producto.
+*ClientesPorProductoForm*: Se define el textbo, el botón de aceptar para la pantalla de consulta de clientes por producto, y el botón para la exportación del resultado en un .csv.
 
+*ProductosMasVendidosForm*: Se define el botón con el que se exportara a csv el resultado.
 
-Estas cuatro clases se usaron para tener más ordenado los forms que se van a utilizar. Nos parece mejor hacerlo así que por html. El día de mañana si queremos agregar un textbox, directamente lo hacemos desde esta pantalla, simplificando las modificaciones en el html, ya que nosotros no somos diseñadores.
+*ClientesMasCompradoresForm*: Se define el botón con el que se exportara a csv el resultado.
+
+*GenerarNuevoUsuarioForm*: Se define la pantalla para la creación de un nuevo usuario.
+
+*CambiarClaveForm*: Se define la pantalla para la modificación de la contraseña.
+
+Estas clases se usaron para tener más ordenado los forms que se van a utilizar. Nos parece mejor hacerlo así que por html. El día de mañana si queremos agregar un textbox, directamente lo hacemos desde esta pantalla, simplificando las modificaciones en el html, ya que nosotros no somos diseñadores.
 
 
 En la carpeta entidades tenemos tenemos tres archivos donde están las clases que vamos a usar en el sistema. Estas son:
@@ -190,6 +221,8 @@ En la carpeta entidades tenemos tenemos tres archivos donde están las clases qu
 
 Cada vez que leemos un registro de ventas.csv generamos una instancia de la clase ventas. Esto nos facilita la representación de una venta en el sistema.
 Lo mismo sucede con un cliente o un producto. Estas dos últimas clases las usamos para llenar los combos de filtros.
+
+Para poder realizar la exportación del .csv en estas clases se generó una nueva funcion que se llama retornarLinea. Esta función simplemente lo que hace es devolver en una lista los atributos que serán mostrados en un .csv de salida en caso de que el cliente lo precise.
 
 
 
