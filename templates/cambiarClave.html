@@ -1,0 +1,15 @@
+{% extends "base_consultas.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Modificar Password{% endblock %}
+
+
+
+{% block page_content %}
+<div class="page-header">    
+    <h1>Modificar Password</h1>
+</div>
+<div class="page-header">    
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}
